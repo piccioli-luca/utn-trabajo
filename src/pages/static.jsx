@@ -1,3 +1,4 @@
+import { Link } from '../components/Link.jsx'
 import './static.css'
 
 function StaticPage () {
@@ -5,8 +6,9 @@ function StaticPage () {
         <header>
             <p>GatosLindos.com</p>
             <div className='headerButtons'>
-                <button>Ver Gatos</button>
-                <button>Contactar</button>
+                <Link url='./'>Home</Link>
+                <Link url='./api'>Ver Gatos</Link>
+                <Link url='./contact'>Contactar</Link>
             </div>
         </header>
         <h1>Bienvenidos a GatosLindos.com!</h1>
