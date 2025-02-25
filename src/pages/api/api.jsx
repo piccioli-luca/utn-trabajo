@@ -5,17 +5,18 @@ import './api.css'
 function ApiPage () {
     const [catImage, setCatImage] = useState("https://avatars.githubusercontent.com/u/200429001?s=48&v=4")
     
-    const FetchCatImage = async () => {
-        const response = await fetch("https://dog.ceo/api/breeds/image/random")
+    const FetchAPI = async (apiLink, setter) => {
+        const response = await fetch(apiLink)
         const data = await response.json()
         const RandomCatImage = data.message
         console.log(RandomCatImage)
-        setCatImage(RandomCatImage)
+        setter(RandomCatImage)
         // return RandomCatImage
     }
     
     useEffect(() => {
-        FetchCatImage()
+        // Grabs an image of a 'cat'.
+        FetchAPI("https://dog.ceo/api/breeds/image/random", setCatImage)
     }, []
 )
 
