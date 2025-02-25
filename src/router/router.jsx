@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import StaticPage from "../pages/static.jsx";
-import ApiPage from "../pages/api.jsx";
-import ContactPage from "../pages/contact.jsx";
+import StaticPage from "../pages/static/static.jsx";
+import ApiPage from "../pages/api/api.jsx";
+import ContactPage from "../pages/contact/contact.jsx";
 
 const Router = () => {
     return (

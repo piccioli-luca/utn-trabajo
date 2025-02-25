@@ -1,7 +1,7 @@
-import { Link } from '../components/Link.jsx'
-import './api.css'
+import { Link } from '../../components/Link.jsx'
+import './contact.css'
 
-function ApiPage () {
+function ContactPage () {
     return <div>
         <header>
             <p>GatosLindos.com</p>
@@ -11,8 +11,8 @@ function ApiPage () {
                 <Link url='./contact'>Contactar</Link>
             </div>
         </header>
-        <h1>Gatos surtidos:</h1>
+        <h1>Aqui nos podes contactar y enviar sus fotos felinas!</h1>
     </div>
 }
 
-export default ApiPage
+export default ContactPage

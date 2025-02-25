@@ -1,7 +1,7 @@
-import { Link } from '../components/Link.jsx'
-import './static.css'
+import { Link } from '../../components/Link.jsx'
+import './api.css'
 
-function StaticPage () {
+function ApiPage () {
     return <div>
         <header>
             <p>GatosLindos.com</p>
@@ -11,9 +11,8 @@ function StaticPage () {
                 <Link url='./contact'>Contactar</Link>
             </div>
         </header>
-        <h1>Bienvenidos a GatosLindos.com!</h1>
-        <h2>Colectamos gatos lindos mediante APIs sobre todo el internet.</h2>
+        <h1>Gatos surtidos:</h1>
     </div>
 }
 
-export default StaticPage
+export default ApiPage

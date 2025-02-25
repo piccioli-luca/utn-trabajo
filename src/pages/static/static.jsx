@@ -1,7 +1,7 @@
-import { Link } from '../components/Link.jsx'
-import './contact.css'
+import { Link } from '../../components/Link.jsx'
+import './static.css'
 
-function ContactPage () {
+function StaticPage () {
     return <div>
         <header>
             <p>GatosLindos.com</p>
@@ -11,8 +11,9 @@ function ContactPage () {
                 <Link url='./contact'>Contactar</Link>
             </div>
         </header>
-        <h1>Aqui nos podes contactar y enviar sus fotos felinas!</h1>
+        <h1>Bienvenidos a GatosLindos.com!</h1>
+        <h2>Colectamos gatos lindos mediante APIs sobre todo el internet.</h2>
     </div>
 }
 
-export default ContactPage
+export default StaticPage
