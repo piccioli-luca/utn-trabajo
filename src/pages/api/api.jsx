@@ -16,7 +16,7 @@ function ApiPage () {
     
     useEffect(() => {
         // Grabs an image of a 'cat'.
-        FetchAPI("https://dog.ceo/api/breeds/image/random", setCatImage)
+        FetchAPI("https://cataas.com/cat", setCatImage)
     }, []
 )
 
