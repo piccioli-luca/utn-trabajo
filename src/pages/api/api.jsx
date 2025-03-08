@@ -1,47 +1,70 @@
 import Layout from '../../components/Layout.jsx'
 import { useEffect, useState } from 'react'
 import './api.css'
+import { TaggedContentCard } from 'react-ui-cards';
+
 
 function ApiPage () {
-    const [catImage, setCatImage] = useState("https://avatars.githubusercontent.com/u/200429001?s=48&v=4")
+    const [catImage, setCatImage] = useState("")
+    const [catTags, setCatTags] = useState(['cute'])
     const [catFact, setCatFact] = useState("Los gatos son muy lindos.")
     
-    const FetchURL = async (setter, response) => {
-        const data = await response.blob() // Convert image response to blob
-        console.log(data)
-        const FetchedURL = URL.createObjectURL(data) // Convert blob to URL
-        return setter(FetchedURL)
-        
-    }
+    const FetchImage = async (allTags) => {
+        let url = "https://cataas.com/cat"
+        if (allTags.length > 0)
+            url += `/${allTags}`
+        // Return a JSON object.
+        url += "?json=true"
+        const response = await fetch(url);
 
-    const FetchText = async (setter, response) => {
-        const data = await response.json()
-        console.log(data)
-        const FetchedText = data.fact
-        return setter(FetchedText)
-        
-    }
-    
-    const FetchAPI = async (apiLink, setter, type) => {
-        const response = await fetch(apiLink)
-        return type == 'URL' ? FetchURL(setter, response) : FetchText(setter, response)
-    }
-    
-    
-    
-    useEffect(() => {
+        // Cataas returns a string if no image was found with given tags, so we check for this first and return placeholders.
+        const textData = await response.text();
+        if (textData === "Cat not found")
+            setCatTags(["No cat found! Try another tag."])
+        const data = JSON.parse(textData); // Converts text data, as response cannot be read twice.
+        const firstTags = data.tags.slice(0, 5) // Only the first 5 to prevent card overflow
+        setCatImage(data.url);
+        setCatTags(firstTags)
+    };
+
+
+    const FetchText = async () => {
+        const response = await fetch("https://catfact.ninja/fact");
+        const data = await response.json();
+        setCatFact(data.fact);
+
+    };    useEffect(() => {
         console.log("Calling FetchAPI")
         // Grabs an image of a 'cat'.
         console.log("Fetching fact...")
-        FetchAPI("https://catfact.ninja/fact", setCatFact, 'fact')
+        FetchText()
         console.log("Fetching image...")
-        FetchAPI("https://cataas.com/cat", setCatImage, 'URL')
+        FetchImage(catTags)
     }, []
 )
+    
+    // Handle form submission for updating the tags
+    const handleTagSubmit = (e) => {
+        e.preventDefault();
+        const allTags = e.target.elements.tagsInput.value.split(',').map(tag => tag.trim()).filter(tag => tag !== "");
+        setCatTags(allTags);  // Update the catTags state with the new array
+        FetchImage(allTags);  // Fetch a new image based on the new tags
+    };
 
-    return <Layout>
+return <Layout>
             <h2>Gato aleatorio:</h2>
-            <img src={catImage}/>
+            <TaggedContentCard 
+                thumbnail={catImage}
+                tags={catTags}
+            />
+            <form onSubmit={handleTagSubmit}>
+                <input
+                    type="text"
+                    name='tagsInput'
+                    placeholder="e.g. cute, orange, loaf"
+                />
+                <button type="submit">Actualizar etiquetas</button>
+            </form>
             <h2>Informacion de los ingleses:</h2>
             <h4>{catFact}</h4>
         </Layout>
