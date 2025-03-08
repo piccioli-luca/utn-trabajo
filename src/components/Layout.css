@@ -1,15 +1,24 @@
 * {
     margin: 0px;
     box-sizing: border-box;
+    font-family: "Comic Neue", sans-serif;
 }
 
 header {
     background-color: slategrey;
-    color: white;
     width: 100vw;
     padding: 10px;
     display: flex;
     text-align: center;
     justify-content: space-between;
-    align-items: center;    
+    align-items: center;
+}
+
+.headerButtons {
+    display: flex;
+    flex-direction: row; /* Ensures horizontal layout */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 10px;
 }
