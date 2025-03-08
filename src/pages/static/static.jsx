@@ -3,8 +3,8 @@ import './static.css'
 
 function StaticPage () {
     return <Layout>
-                <h1 className='title'>Bienvenidos a GatosLindos.com!</h1>
-                <h2 className='subtitle'>Colectamos gatos lindos mediante APIs sobre todo el internet.</h2>
+                <h1 className='title'>Welcome to CuteCats.com!</h1>
+                <h2 className='subtitle'>We collect cats and cat related information via APIs all over the internet.</h2>
             </Layout>
 }
 

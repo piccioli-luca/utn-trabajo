@@ -3,18 +3,18 @@ import './contact.css'
 
 function ContactPage () {
     return <Layout>
-                <h1>Aqui nos podes contactar y enviar sus fotos felinas!</h1>
+                <h1>Send us your cat photos!</h1>
                 <form className="contact-form">
-                    <label htmlFor="name" className="form-label">Nombre:</label>
-                    <input type="text" id="name" name="name" className="form-input" placeholder="Tu nombre" />
+                    <label htmlFor="name" className="form-label">Name:</label>
+                    <input type="text" id="name" name="name" className="form-input" placeholder="Your Name" />
 
                     <label htmlFor="email" className="form-label">Email:</label>
-                    <input type="email" id="email" name="email" className="form-input" placeholder="Tu correo electrónico" />
+                    <input type="email" id="email" name="email" className="form-input" placeholder="Your mail" />
 
-                    <label htmlFor="message" className="form-label">Mensaje:</label>
-                    <textarea id="message" name="message" className="form-textarea" placeholder="Escribe tu mensaje"></textarea>
+                    <label htmlFor="message" className="form-label">Message:</label>
+                    <textarea id="message" name="message" className="form-textarea" placeholder="Write your message"></textarea>
 
-                    <button type="submit" className="form-button">Enviar</button>
+                    <button type="submit" className="form-button">Send</button>
                 </form>
             </Layout>
 }

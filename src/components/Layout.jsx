@@ -27,11 +27,11 @@ function Layout (props) {
 
     return <div>
         <header style= {{backgroundColor: colors.header}}>
-            <p style= {{color: colors.headertext}}>GatosLindos.com</p>
+            <p style= {{color: colors.headertext}}>CuteCats.com</p>
             <ul className='headerButtons'>
                 <li><Link url='./' style={{color: colors.headertext}}>Home</Link></li>
-                <li><Link url='./api' style={{color: colors.headertext}}>Ver Gatos</Link></li>
-                <li><Link url='./contact' style={{color: colors.headertext}}>Contactar</Link></li>
+                <li><Link url='./api' style={{color: colors.headertext}}>Cats!</Link></li>
+                <li><Link url='./contact' style={{color: colors.headertext}}>Contact</Link></li>
             </ul>
         </header>
         {props.children}
