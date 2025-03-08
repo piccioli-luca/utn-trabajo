@@ -7,7 +7,7 @@ import { TaggedContentCard } from 'react-ui-cards';
 function ApiPage () {
     const [catImage, setCatImage] = useState("")
     const [catTags, setCatTags] = useState(['cute'])
-    const [catFact, setCatFact] = useState("Los gatos son muy lindos.")
+    const [catFact, setCatFact] = useState("Cats are wonderful.")
     
     const FetchImage = async (allTags) => {
         let url = "https://cataas.com/cat"
@@ -16,15 +16,23 @@ function ApiPage () {
         // Return a JSON object.
         url += "?json=true"
         const response = await fetch(url);
+        // Check if the response is JSON
+        const contentType = response.headers.get("content-type");
+        let data;
 
-        // Cataas returns a string if no image was found with given tags, so we check for this first and return placeholders.
-        const textData = await response.text();
-        if (textData === "Cat not found")
-            setCatTags(["No cat found! Try another tag."])
-        const data = JSON.parse(textData); // Converts text data, as response cannot be read twice.
+        if (contentType && contentType.includes("application/json")) {
+            data = await response.json();  // Parse as JSON
+        } else {
+            data = await response.text();  // Parse as plain text
+        }
+
+        if (data === "Cat not found") {
+            setCatTags(["No cat found!"]);  // Set the tag to "No cat found!" if no cat is found
+            setCatImage("");  // Optionally clear the image when no cat is found
+        } else {
         const firstTags = data.tags.slice(0, 5) // Only the first 5 to prevent card overflow
         setCatImage(data.url);
-        setCatTags(firstTags)
+        setCatTags(firstTags)}
     };
 
 
@@ -52,7 +60,7 @@ function ApiPage () {
     };
 
 return <Layout>
-            <h2>Gato aleatorio:</h2>
+            <h2>Tagged Cats:</h2>
             <TaggedContentCard 
                 thumbnail={catImage}
                 tags={catTags}
@@ -63,10 +71,12 @@ return <Layout>
                     name='tagsInput'
                     placeholder="e.g. cute, orange, loaf"
                 />
-                <button type="submit">Actualizar etiquetas</button>
+                <button type="submit">Get Tagged Cat</button>
             </form>
-            <h2>Informacion de los ingleses:</h2>
+            <h3>Try these out: gif, box, silly, loaf</h3>
+            <h2>Cat Fact!</h2>
             <h4>{catFact}</h4>
+            <button onClick={FetchText}>More Facts!</button>
         </Layout>
 }
 

@@ -9,8 +9,6 @@ function Layout (props) {
         {header: 'slategrey', body:'grey', headertext:'black', bodytext:'black'},
         // Orange
         {header: 'orange', body:'peachpuff', headertext:'white', bodytext:'white'},
-        // Black-brown
-        {header: '#2D1200', body:'#511F00', headertext:'white', bodytext:'white'},
         // Tux
         {header: 'black', body:'white', headertext:'white', bodytext:'black'},
         // Tortoiseshell (somewhat)
